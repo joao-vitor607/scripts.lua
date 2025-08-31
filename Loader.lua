@@ -1,4 +1,3 @@
-print("Bem-vindo ao Loader!")
 -- Loader.lua
 -- Carrega scripts dinamicamente com base no game.PlaceId
 
