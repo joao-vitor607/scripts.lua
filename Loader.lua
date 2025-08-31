@@ -1,42 +1,26 @@
 print("Bem-vindo ao Loader!")
--- Loader.lua
--- Carrega scripts dinamicamente com base no game.PlaceId
-
+-- Variables
 local scriptUrls = {
     [96342491571673] = "StealABrainrot.lua",
     [109983668079237] = "StealABrainrot.lua"
 }
 
-local baseUrl = "https://raw.githubusercontent.com/vitor607/Scripts/refs/heads/main/"
-
-local function loadScript(url)
-    local success, result = pcall(function()
-        return game:HttpGet(url)
-    end)
-    if not success then
-        warn("[Loader] Falha ao baixar script de " .. url .. ": " .. result)
-        return nil
-    end
-
-    success, result = pcall(loadstring, result)
-    if not success then
-        warn("[Loader] Falha ao executar script de " .. url .. ": " .. result)
-        return nil
-    end
-
-    return result
-end
+local baseUrl = ""
 
 local scriptUrl = scriptUrls[game.PlaceId]
 if scriptUrl then
-    print("[Loader] Carregando script para PlaceId " .. game.PlaceId .. ": " .. scriptUrl)
-    local fullUrl = baseUrl .. scriptUrl
-    local scriptFunc = loadScript(fullUrl)
-    if scriptFunc then
-        scriptFunc() -- Executa o script
+    local success, errorMsg = pcall(function()
+        loadstring(game:HttpGet(baseUrl .. scriptUrl))()
+    end)
+    if not success then
+        warn("[devil Ugly] Failed to load script:", errorMsg)
     end
 else
-    warn("[Loader] Nenhum script encontrado para PlaceId " .. game.PlaceId)
-    -- Opcional: adicionar um comportamento padrão
-    print("[Loader] Nenhum script padrão configurado.")
+    -- fallback: always load the Loader if the ID is not in the list
+    local success, errorMsg = pcall(function()
+        loadstring(game:HttpGet(baseUrl .. "Loader.lua"))()
+    end)
+    if not success then
+        warn("[vitor Ugly] Failed to load Loader:", errorMsg)
+    end
 end
