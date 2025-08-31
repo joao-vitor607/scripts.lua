@@ -1,3 +1,4 @@
+print("Bem-vindo ao Loader!")
 -- Loader.lua
 -- Carrega scripts dinamicamente com base no game.PlaceId
 
@@ -6,7 +7,7 @@ local scriptUrls = {
     [109983668079237] = "StealABrainrot.lua"
 }
 
-local baseUrl = "https://raw.githubusercontent.com/DynaFetch/Scripts/refs/heads/main/"
+local baseUrl = "https://raw.githubusercontent.com/vitor607/Scripts/refs/heads/main/"
 
 local function loadScript(url)
     local success, result = pcall(function()
