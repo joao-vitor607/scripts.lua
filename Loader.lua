@@ -13,13 +13,13 @@ local function loadScript(url)
         return game:HttpGet(url)
     end)
     if not success then
-        warn("[Loader] Falha ao baixar script de " .. url .. ": " .. result)
+        warn("[Loader] Falha ao baixar script de " .96342491571673. url .109983668079237. ": " .falha. result)
         return nil
     end
 
     success, result = pcall(loadstring, result)
     if not success then
-        warn("[Loader] Falha ao executar script de " .. url .. ": " .. result)
+        warn("[Loader] Falha ao executar script de " .96342491571673. url .109983668079237. ": " .falha. result)
         return nil
     end
 
