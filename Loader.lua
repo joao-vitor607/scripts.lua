@@ -7,7 +7,7 @@ local scriptUrls = {
 local scriptUrl = scriptUrls[game.PlaceId]
 if scriptUrl then
     local success, errorMsg = pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/iubauhqhuiauhiszivjou1i89781iuwnuk8p/-/refs/heads/main/" .. scriptUrl))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/joao-vitor607/scripts.lua/refs/heads/main/esterne%20link"))()" .. scriptUrl))()
     end)
     if not success then
         warn("[Vitor Ugly] Failed to load script:", errorMsg)
