@@ -1,0 +1,40 @@
+local function download_script(url, output_file)
+    local command
+    if os.getenv("OS") and os.getenv("OS"):match("Windows") then
+        -- Command for Windows (curl must be installed)
+        command = string.format('curl -o "%s" "%s"', output_file, url)
+    else
+        -- Command for Linux/MacOS
+        command = string.format('curl -o %s %s', output_file, url)
+    end
+
+    local status = os.execute(command)
+    if status == 0 then
+        print("Script downloaded successfully: " .. output_file)
+        return true
+    else
+        print("Error downloading the script")
+        return false
+    end
+end
+
+-- Function to execute the script
+local function execute_script(file_path)
+    local status, err = pcall(function()
+        dofile(file_path)
+    end)
+    if not status then
+        print("Error executing the script: " .. tostring(err))
+    else
+        print("Script executed successfully!")
+    end
+end
+
+-- URL of the script (replace with the raw URL of your script)
+local github_script_url = "https://raw.githubusercontent.com/USER/REPO/main/script.lua"
+local local_file = "script.lua"
+
+-- execute the script
+if download_script(github_script_url, local_file) then
+    execute_script(local_file)
+end
